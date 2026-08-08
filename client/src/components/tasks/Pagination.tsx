@@ -27,7 +27,7 @@ export function Pagination({ pagination, onPageChange, onLimitChange }: Paginati
           onChange={(e) => onLimitChange(Number(e.target.value))}
           className="rounded border border-gray-300 px-2 py-1 text-sm"
         >
-          <option value={10}>10</option>
+          <option value={10}>5</option>
           <option value={20}>20</option>
           <option value={50}>50</option>
         </select>
