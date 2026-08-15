@@ -40,12 +40,7 @@ export function TaskForm({ task, onSubmit, onCancel, isLoading }: TaskFormProps)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <Input
-        id="title"
-        label="Title"
-        error={errors.title?.message}
-        {...register('title')}
-      />
+      <Input id="title" label="Title" error={errors.title?.message} {...register('title')} />
 
       <Textarea
         id="description"

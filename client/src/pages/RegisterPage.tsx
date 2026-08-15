@@ -72,12 +72,7 @@ export function RegisterPage() {
 
         <div className="bg-white rounded-xl shadow-sm border p-6">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
-            <Input
-              id="name"
-              label="Name"
-              error={errors.name?.message}
-              {...register('name')}
-            />
+            <Input id="name" label="Name" error={errors.name?.message} {...register('name')} />
             <Input
               id="email"
               label="Email"

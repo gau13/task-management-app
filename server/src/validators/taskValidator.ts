@@ -33,9 +33,7 @@ export const taskQuerySchema = z.object({
   status: taskStatusEnum.optional(),
   priority: taskPriorityEnum.optional(),
   search: z.string().optional(),
-  sortBy: z
-    .enum(['createdAt', 'updatedAt', 'dueDate', 'priority', 'title'])
-    .default('createdAt'),
+  sortBy: z.enum(['createdAt', 'updatedAt', 'dueDate', 'priority', 'title']).default('createdAt'),
   sortOrder: z.enum(['asc', 'desc']).default('desc'),
   dueDateFilter: z.enum(['today', 'upcoming', 'overdue']).optional(),
 });

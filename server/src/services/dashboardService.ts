@@ -5,28 +5,24 @@ export const dashboardService = {
     const now = new Date();
     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-    const [total, todo, inProgress, completed, overdue, highPriority] =
-      await Promise.all([
-        Task.countDocuments({ owner: userId }),
-        Task.countDocuments({ owner: userId, status: 'TODO' }),
-        Task.countDocuments({ owner: userId, status: 'IN_PROGRESS' }),
-        Task.countDocuments({ owner: userId, status: 'COMPLETED' }),
-        Task.countDocuments({
-          owner: userId,
-          dueDate: { $lt: startOfToday },
-          status: { $ne: 'COMPLETED' },
-        }),
-        Task.countDocuments({ owner: userId, priority: 'HIGH' }),
-      ]);
+    const [total, todo, inProgress, completed, overdue, highPriority] = await Promise.all([
+      Task.countDocuments({ owner: userId }),
+      Task.countDocuments({ owner: userId, status: 'TODO' }),
+      Task.countDocuments({ owner: userId, status: 'IN_PROGRESS' }),
+      Task.countDocuments({ owner: userId, status: 'COMPLETED' }),
+      Task.countDocuments({
+        owner: userId,
+        dueDate: { $lt: startOfToday },
+        status: { $ne: 'COMPLETED' },
+      }),
+      Task.countDocuments({ owner: userId, priority: 'HIGH' }),
+    ]);
 
     return { total, todo, inProgress, completed, overdue, highPriority };
   },
 
   async getRecentTasks(userId: string, limit = 5) {
-    return Task.find({ owner: userId })
-      .sort({ updatedAt: -1 })
-      .limit(limit)
-      .lean();
+    return Task.find({ owner: userId }).sort({ updatedAt: -1 }).limit(limit).lean();
   },
 
   async getUpcomingTasks(userId: string, limit = 5) {

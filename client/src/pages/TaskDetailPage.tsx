@@ -26,7 +26,11 @@ export function TaskDetailPage() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [commentText, setCommentText] = useState('');
 
-  const { data: task, isLoading, isError } = useQuery({
+  const {
+    data: task,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['task', id],
     queryFn: async () => {
       const res = await tasksApi.getTask(id!);
@@ -111,7 +115,10 @@ export function TaskDetailPage() {
   return (
     <div>
       <div className="mb-6">
-        <Link to="/tasks" className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-4">
+        <Link
+          to="/tasks"
+          className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-4"
+        >
           <ArrowLeft className="h-4 w-4" />
           Back to Tasks
         </Link>
@@ -184,12 +191,8 @@ export function TaskDetailPage() {
                   <div key={comment._id} className="border rounded-lg p-4">
                     <div className="flex items-start justify-between">
                       <div>
-                        <p className="text-sm font-medium text-gray-900">
-                          {comment.user.name}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          {formatDateTime(comment.createdAt)}
-                        </p>
+                        <p className="text-sm font-medium text-gray-900">{comment.user.name}</p>
+                        <p className="text-xs text-gray-500">{formatDateTime(comment.createdAt)}</p>
                       </div>
                       {(comment.user._id === user?._id || user?.role === 'admin') && (
                         <button

@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: config.clientUrl,
     credentials: true,
-  })
+  }),
 );
 app.use(morgan(config.nodeEnv === 'development' ? 'dev' : 'combined'));
 app.use(express.json({ limit: '10kb' }));

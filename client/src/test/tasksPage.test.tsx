@@ -44,7 +44,7 @@ const renderTasksPage = () => {
           <TasksPage />
         </MemoryRouter>
       </ToastProvider>
-    </QueryClientProvider>
+    </QueryClientProvider>,
   );
 };
 

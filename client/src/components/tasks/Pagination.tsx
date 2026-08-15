@@ -13,8 +13,9 @@ export function Pagination({ pagination, onPageChange, onLimitChange }: Paginati
   const start = total === 0 ? 0 : (page - 1) * limit + 1;
   const end = Math.min(page * limit, total);
 
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
-    .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 1);
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1).filter(
+    (p) => p === 1 || p === totalPages || Math.abs(p - page) <= 1,
+  );
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
@@ -53,9 +54,7 @@ export function Pagination({ pagination, onPageChange, onLimitChange }: Paginati
               <button
                 onClick={() => onPageChange(p)}
                 className={`px-3 py-1 text-sm rounded ${
-                  p === page
-                    ? 'bg-primary-600 text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
+                  p === page ? 'bg-primary-600 text-white' : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 {p}

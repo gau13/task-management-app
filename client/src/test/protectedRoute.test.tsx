@@ -24,7 +24,7 @@ describe('ProtectedRoute', () => {
           </Route>
           <Route path="/login" element={<div>Login Page</div>} />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
   it('redirects unauthenticated users to login', () => {

@@ -6,7 +6,7 @@ import { verifyToken } from '../utils/jwt.js';
 export const authenticate = async (
   req: Request,
   _res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
@@ -40,11 +40,7 @@ export const authenticate = async (
   }
 };
 
-export const authorizeAdmin = (
-  req: Request,
-  _res: Response,
-  next: NextFunction
-): void => {
+export const authorizeAdmin = (req: Request, _res: Response, next: NextFunction): void => {
   if (req.user?.role !== 'admin') {
     next(new AppError('Forbidden', 403));
     return;

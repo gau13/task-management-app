@@ -12,8 +12,23 @@
     "test:server": "npm test --prefix server",
     "test:client": "npm test --prefix client",
     "seed": "npm run seed --prefix server",
+    "lint": "eslint client/src server/src server/tests --max-warnings 0",
+    "lint:fix": "eslint client/src server/src server/tests --fix",
+    "format": "prettier --write \"client/src/**/*.{ts,tsx,css}\" \"server/src/**/*.ts\" \"server/tests/**/*.ts\" \"*.{json,yml,yaml,md}\" \".github/**/*.yml\"",
+    "format:check": "prettier --check \"client/src/**/*.{ts,tsx,css}\" \"server/src/**/*.ts\" \"server/tests/**/*.ts\" \"*.{json,yml,yaml,md}\" \".github/**/*.yml\"",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript-eslint": "^8.20.0"
   }
 }

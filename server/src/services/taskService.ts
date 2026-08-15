@@ -2,17 +2,11 @@ import { FilterQuery } from 'mongoose';
 import { ITask, Task } from '../models/Task.js';
 import { AuthenticatedUser, PaginationMeta } from '../types/index.js';
 import { AppError } from '../utils/apiResponse.js';
-import {
-  CreateTaskInput,
-  TaskQueryInput,
-  UpdateTaskInput,
-} from '../validators/taskValidator.js';
+import { CreateTaskInput, TaskQueryInput, UpdateTaskInput } from '../validators/taskValidator.js';
 
 const priorityOrder: Record<string, number> = { LOW: 1, MEDIUM: 2, HIGH: 3 };
 
-const buildDueDateFilter = (
-  dueDateFilter: string | undefined
-): FilterQuery<ITask> | null => {
+const buildDueDateFilter = (dueDateFilter: string | undefined): FilterQuery<ITask> | null => {
   if (!dueDateFilter) return null;
 
   const now = new Date();
@@ -78,7 +72,7 @@ export const taskService = {
     }
 
     const sortField = query.sortBy;
-    let sortOptions: Record<string, 1 | -1> = {
+    const sortOptions: Record<string, 1 | -1> = {
       [sortField]: query.sortOrder === 'asc' ? 1 : -1,
     };
 
@@ -133,11 +127,7 @@ export const taskService = {
     return task;
   },
 
-  async updateTask(
-    user: AuthenticatedUser,
-    taskId: string,
-    input: UpdateTaskInput
-  ) {
+  async updateTask(user: AuthenticatedUser, taskId: string, input: UpdateTaskInput) {
     const filter: FilterQuery<ITask> = { _id: taskId };
     if (user.role !== 'admin') {
       filter.owner = user._id;

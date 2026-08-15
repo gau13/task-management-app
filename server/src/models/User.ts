@@ -36,7 +36,7 @@ const userSchema = new Schema<IUser>(
       default: 'user',
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 userSchema.index({ email: 1 }, { unique: true });

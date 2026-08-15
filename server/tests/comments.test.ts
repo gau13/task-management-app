@@ -57,9 +57,7 @@ describe('Comments', () => {
       content: 'To delete',
     });
 
-    const res = await authRequest(token).delete(
-      `/api/tasks/${task._id}/comments/${comment._id}`
-    );
+    const res = await authRequest(token).delete(`/api/tasks/${task._id}/comments/${comment._id}`);
 
     expect(res.status).toBe(200);
 
@@ -68,7 +66,7 @@ describe('Comments', () => {
   });
 
   it('should prevent unauthorized comment deletion', async () => {
-    const { user: userA, token: tokenA } = await createTestUser({ email: 'commenta@test.com' });
+    const { token: tokenA } = await createTestUser({ email: 'commenta@test.com' });
     const { user: userB } = await createTestUser({ email: 'commentb@test.com' });
 
     const task = await Task.create({
@@ -84,9 +82,7 @@ describe('Comments', () => {
       content: 'User B comment',
     });
 
-    const res = await authRequest(tokenA).delete(
-      `/api/tasks/${task._id}/comments/${comment._id}`
-    );
+    const res = await authRequest(tokenA).delete(`/api/tasks/${task._id}/comments/${comment._id}`);
 
     expect(res.status).toBe(404);
   });
@@ -128,7 +124,7 @@ describe('Comments', () => {
     });
 
     const res = await authRequest(adminToken).delete(
-      `/api/tasks/${task._id}/comments/${comment._id}`
+      `/api/tasks/${task._id}/comments/${comment._id}`,
     );
 
     expect(res.status).toBe(200);

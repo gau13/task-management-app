@@ -1,13 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import {
-  ListTodo,
-  Clock,
-  CheckCircle2,
-  AlertTriangle,
-  Flame,
-  CircleDot,
-} from 'lucide-react';
+import { ListTodo, Clock, CheckCircle2, AlertTriangle, Flame, CircleDot } from 'lucide-react';
 import { dashboardApi } from '../api/tasksApi';
 import { StatusBadge, PriorityBadge } from '../components/ui/Badge';
 import { LoadingSkeleton, EmptyState } from '../components/ui/EmptyState';
@@ -127,7 +120,10 @@ export function DashboardPage() {
         <h1 className="text-2xl font-bold text-gray-900 mb-6">Dashboard</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="bg-white rounded-xl border p-5 h-24 animate-pulse bg-gray-100" />
+            <div
+              key={i}
+              className="bg-white rounded-xl border p-5 h-24 animate-pulse bg-gray-100"
+            />
           ))}
         </div>
         <LoadingSkeleton rows={3} />
@@ -151,12 +147,42 @@ export function DashboardPage() {
       <h1 className="text-2xl font-bold text-gray-900 mb-6">Dashboard</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        <StatCard label="Total Tasks" value={stats.total} icon={ListTodo} color="bg-blue-50 text-blue-600" />
-        <StatCard label="To Do" value={stats.todo} icon={CircleDot} color="bg-gray-100 text-gray-600" />
-        <StatCard label="In Progress" value={stats.inProgress} icon={Clock} color="bg-blue-50 text-blue-600" />
-        <StatCard label="Completed" value={stats.completed} icon={CheckCircle2} color="bg-green-50 text-green-600" />
-        <StatCard label="Overdue" value={stats.overdue} icon={AlertTriangle} color="bg-red-50 text-red-600" />
-        <StatCard label="High Priority" value={stats.highPriority} icon={Flame} color="bg-orange-50 text-orange-600" />
+        <StatCard
+          label="Total Tasks"
+          value={stats.total}
+          icon={ListTodo}
+          color="bg-blue-50 text-blue-600"
+        />
+        <StatCard
+          label="To Do"
+          value={stats.todo}
+          icon={CircleDot}
+          color="bg-gray-100 text-gray-600"
+        />
+        <StatCard
+          label="In Progress"
+          value={stats.inProgress}
+          icon={Clock}
+          color="bg-blue-50 text-blue-600"
+        />
+        <StatCard
+          label="Completed"
+          value={stats.completed}
+          icon={CheckCircle2}
+          color="bg-green-50 text-green-600"
+        />
+        <StatCard
+          label="Overdue"
+          value={stats.overdue}
+          icon={AlertTriangle}
+          color="bg-red-50 text-red-600"
+        />
+        <StatCard
+          label="High Priority"
+          value={stats.highPriority}
+          icon={Flame}
+          color="bg-orange-50 text-orange-600"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -164,11 +190,7 @@ export function DashboardPage() {
           <h3 className="font-semibold text-gray-900 mb-4">Task Distribution</h3>
           <StatusChart distribution={statusDistribution} />
         </div>
-        <TaskListSection
-          title="Recent Tasks"
-          tasks={recentTasks}
-          emptyMessage="No recent tasks."
-        />
+        <TaskListSection title="Recent Tasks" tasks={recentTasks} emptyMessage="No recent tasks." />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

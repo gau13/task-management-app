@@ -10,8 +10,7 @@ import {
 } from '../types';
 
 export const tasksApi = {
-  getTasks: (params: TaskQueryParams) =>
-    api.get<ApiResponse<Task[]>>('/tasks', { params }),
+  getTasks: (params: TaskQueryParams) => api.get<ApiResponse<Task[]>>('/tasks', { params }),
 
   getTask: (id: string) => api.get<ApiResponse<Task>>(`/tasks/${id}`),
 
@@ -24,16 +23,13 @@ export const tasksApi = {
 };
 
 export const commentsApi = {
-  getComments: (taskId: string) =>
-    api.get<ApiResponse<Comment[]>>(`/tasks/${taskId}/comments`),
+  getComments: (taskId: string) => api.get<ApiResponse<Comment[]>>(`/tasks/${taskId}/comments`),
 
   createComment: (taskId: string, content: string) =>
     api.post<ApiResponse<Comment>>(`/tasks/${taskId}/comments`, { content }),
 
   deleteComment: (taskId: string, commentId: string) =>
-    api.delete<ApiResponse<{ message: string }>>(
-      `/tasks/${taskId}/comments/${commentId}`
-    ),
+    api.delete<ApiResponse<{ message: string }>>(`/tasks/${taskId}/comments/${commentId}`),
 };
 
 export const dashboardApi = {

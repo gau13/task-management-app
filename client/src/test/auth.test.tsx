@@ -29,7 +29,7 @@ const renderWithProviders = (ui: React.ReactElement) => {
           <MemoryRouter>{ui}</MemoryRouter>
         </ToastProvider>
       </AuthProvider>
-    </QueryClientProvider>
+    </QueryClientProvider>,
   );
 };
 

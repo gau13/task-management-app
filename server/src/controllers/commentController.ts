@@ -10,7 +10,7 @@ export const getComments = asyncHandler(async (req: Request, res: Response) => {
   const comments = await commentService.getComments(
     req.user!._id,
     getParam(req.params.taskId),
-    isAdmin
+    isAdmin,
   );
   sendSuccess(res, comments);
 });
@@ -22,7 +22,7 @@ export const createComment = asyncHandler(async (req: Request, res: Response) =>
     req.user!._id,
     getParam(req.params.taskId),
     input,
-    isAdmin
+    isAdmin,
   );
   sendSuccess(res, comment, 201);
 });
@@ -31,7 +31,7 @@ export const deleteComment = asyncHandler(async (req: Request, res: Response) =>
   const result = await commentService.deleteComment(
     req.user!,
     getParam(req.params.taskId),
-    getParam(req.params.commentId)
+    getParam(req.params.commentId),
   );
   sendSuccess(res, result);
 });

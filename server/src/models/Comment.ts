@@ -29,7 +29,7 @@ const commentSchema = new Schema<IComment>(
       maxlength: [1000, 'Comment cannot exceed 1000 characters'],
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 commentSchema.index({ task: 1, createdAt: -1 });

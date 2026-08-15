@@ -15,7 +15,7 @@ export const sendSuccess = <T>(
   res: Response,
   data: T,
   statusCode = 200,
-  pagination?: ApiResponse['pagination']
+  pagination?: ApiResponse['pagination'],
 ): Response => {
   const response: ApiResponse<T> = { success: true, data };
   if (pagination) {

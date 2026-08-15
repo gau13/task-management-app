@@ -4,13 +4,11 @@ import { request, app, createTestUser, authRequest } from './helpers.js';
 describe('Authentication', () => {
   describe('POST /api/auth/register', () => {
     it('should register a new user', async () => {
-      const res = await request(app)
-        .post('/api/auth/register')
-        .send({
-          name: 'John Doe',
-          email: 'john@example.com',
-          password: 'Password1',
-        });
+      const res = await request(app).post('/api/auth/register').send({
+        name: 'John Doe',
+        email: 'john@example.com',
+        password: 'Password1',
+      });
 
       expect(res.status).toBe(201);
       expect(res.body.success).toBe(true);
@@ -22,26 +20,22 @@ describe('Authentication', () => {
     it('should reject duplicate email', async () => {
       await createTestUser({ email: 'duplicate@example.com' });
 
-      const res = await request(app)
-        .post('/api/auth/register')
-        .send({
-          name: 'Another User',
-          email: 'duplicate@example.com',
-          password: 'Password1',
-        });
+      const res = await request(app).post('/api/auth/register').send({
+        name: 'Another User',
+        email: 'duplicate@example.com',
+        password: 'Password1',
+      });
 
       expect(res.status).toBe(409);
       expect(res.body.success).toBe(false);
     });
 
     it('should reject invalid registration data', async () => {
-      const res = await request(app)
-        .post('/api/auth/register')
-        .send({
-          name: 'A',
-          email: 'invalid-email',
-          password: 'weak',
-        });
+      const res = await request(app).post('/api/auth/register').send({
+        name: 'A',
+        email: 'invalid-email',
+        password: 'weak',
+      });
 
       expect(res.status).toBe(400);
       expect(res.body.success).toBe(false);
@@ -55,12 +49,10 @@ describe('Authentication', () => {
         password: 'Password1',
       });
 
-      const res = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: user.email,
-          password: 'Password1',
-        });
+      const res = await request(app).post('/api/auth/login').send({
+        email: user.email,
+        password: 'Password1',
+      });
 
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);
@@ -70,24 +62,20 @@ describe('Authentication', () => {
     it('should reject invalid credentials', async () => {
       await createTestUser({ email: 'nologin@example.com', password: 'Password1' });
 
-      const res = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'nologin@example.com',
-          password: 'WrongPassword1',
-        });
+      const res = await request(app).post('/api/auth/login').send({
+        email: 'nologin@example.com',
+        password: 'WrongPassword1',
+      });
 
       expect(res.status).toBe(401);
       expect(res.body.success).toBe(false);
     });
 
     it('should reject non-existent user', async () => {
-      const res = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'nonexistent@example.com',
-          password: 'Password1',
-        });
+      const res = await request(app).post('/api/auth/login').send({
+        email: 'nonexistent@example.com',
+        password: 'Password1',
+      });
 
       expect(res.status).toBe(401);
       expect(res.body.success).toBe(false);

@@ -16,12 +16,7 @@ export const commentService = {
     return comments;
   },
 
-  async createComment(
-    userId: string,
-    taskId: string,
-    input: CreateCommentInput,
-    isAdmin = false
-  ) {
+  async createComment(userId: string, taskId: string, input: CreateCommentInput, isAdmin = false) {
     await this.verifyTaskAccess(userId, taskId, isAdmin);
 
     const comment = await Comment.create({
@@ -30,9 +25,7 @@ export const commentService = {
       content: input.content,
     });
 
-    const populated = await Comment.findById(comment._id)
-      .populate('user', 'name email')
-      .lean();
+    const populated = await Comment.findById(comment._id).populate('user', 'name email').lean();
 
     return populated;
   },

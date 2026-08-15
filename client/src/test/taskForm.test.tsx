@@ -44,7 +44,7 @@ describe('TaskForm', () => {
           updatedAt: '2026-08-01',
         }}
         onSubmit={onSubmit}
-      />
+      />,
     );
 
     expect(screen.getByDisplayValue('Existing Task')).toBeInTheDocument();

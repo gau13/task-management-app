@@ -30,7 +30,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       </select>
       {error && <p className="text-sm text-red-600">{error}</p>}
     </div>
-  )
+  ),
 );
 
 Select.displayName = 'Select';

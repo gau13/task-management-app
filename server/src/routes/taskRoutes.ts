@@ -7,11 +7,7 @@ import {
   getTasks,
   updateTask,
 } from '../controllers/taskController.js';
-import {
-  createComment,
-  deleteComment,
-  getComments,
-} from '../controllers/commentController.js';
+import { createComment, deleteComment, getComments } from '../controllers/commentController.js';
 
 const router = Router();
 

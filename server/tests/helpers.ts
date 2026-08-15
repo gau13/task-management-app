@@ -5,7 +5,12 @@ import bcrypt from 'bcryptjs';
 import { generateToken } from '../src/utils/jwt.js';
 
 export const createTestUser = async (
-  overrides: Partial<{ name: string; email: string; password: string; role: 'user' | 'admin' }> = {}
+  overrides: Partial<{
+    name: string;
+    email: string;
+    password: string;
+    role: 'user' | 'admin';
+  }> = {},
 ) => {
   const password = overrides.password || 'Test@12345';
   const hashedPassword = await bcrypt.hash(password, 12);

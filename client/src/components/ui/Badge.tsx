@@ -26,7 +26,9 @@ const priorityLabels: Record<TaskPriority, string> = {
 
 export function StatusBadge({ status }: { status: TaskStatus }) {
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusStyles[status]}`}>
+    <span
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusStyles[status]}`}
+    >
       {statusLabels[status]}
     </span>
   );
@@ -34,7 +36,9 @@ export function StatusBadge({ status }: { status: TaskStatus }) {
 
 export function PriorityBadge({ priority }: { priority: TaskPriority }) {
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${priorityStyles[priority]}`}>
+    <span
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${priorityStyles[priority]}`}
+    >
       {priorityLabels[priority]}
     </span>
   );

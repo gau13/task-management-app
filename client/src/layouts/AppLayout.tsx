@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import {
-  LayoutDashboard,
-  ListTodo,
-  LogOut,
-  Menu,
-  X,
-  CheckSquare,
-} from 'lucide-react';
+import { LayoutDashboard, ListTodo, LogOut, Menu, X, CheckSquare } from 'lucide-react';
 import { useAuth } from '../features/auth/AuthContext';
 import { Button } from '../components/ui/Button';
 
@@ -65,7 +58,10 @@ export function AppLayout() {
 
       {/* Mobile nav overlay */}
       {sidebarOpen && (
-        <div className="lg:hidden fixed inset-0 z-30 bg-black/50" onClick={() => setSidebarOpen(false)} />
+        <div
+          className="lg:hidden fixed inset-0 z-30 bg-black/50"
+          onClick={() => setSidebarOpen(false)}
+        />
       )}
 
       {/* Mobile sidebar */}
@@ -84,7 +80,12 @@ export function AppLayout() {
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t">
           <p className="text-sm font-medium text-gray-900 truncate">{user?.name}</p>
           <p className="text-xs text-gray-500 truncate">{user?.email}</p>
-          <Button variant="ghost" size="sm" onClick={handleLogout} className="mt-2 w-full justify-start">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleLogout}
+            className="mt-2 w-full justify-start"
+          >
             <LogOut className="h-4 w-4" />
             Logout
           </Button>
@@ -104,7 +105,12 @@ export function AppLayout() {
           <div className="p-4 border-t">
             <p className="text-sm font-medium text-gray-900 truncate">{user?.name}</p>
             <p className="text-xs text-gray-500 truncate mb-2">{user?.email}</p>
-            <Button variant="ghost" size="sm" onClick={handleLogout} className="w-full justify-start">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleLogout}
+              className="w-full justify-start"
+            >
               <LogOut className="h-4 w-4" />
               Logout
             </Button>

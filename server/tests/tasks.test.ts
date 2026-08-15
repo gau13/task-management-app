@@ -7,15 +7,13 @@ describe('Tasks', () => {
     it('should create a task', async () => {
       const { token } = await createTestUser();
 
-      const res = await authRequest(token)
-        .post('/api/tasks')
-        .send({
-          title: 'Test Task',
-          description: 'Test description',
-          status: 'TODO',
-          priority: 'HIGH',
-          dueDate: '2026-08-20',
-        });
+      const res = await authRequest(token).post('/api/tasks').send({
+        title: 'Test Task',
+        description: 'Test description',
+        status: 'TODO',
+        priority: 'HIGH',
+        dueDate: '2026-08-20',
+      });
 
       expect(res.status).toBe(201);
       expect(res.body.success).toBe(true);
@@ -24,9 +22,7 @@ describe('Tasks', () => {
     });
 
     it('should reject unauthenticated request', async () => {
-      const res = await request(app)
-        .post('/api/tasks')
-        .send({ title: 'Test' });
+      const res = await request(app).post('/api/tasks').send({ title: 'Test' });
 
       expect(res.status).toBe(401);
     });
@@ -84,8 +80,20 @@ describe('Tasks', () => {
       const { user, token } = await createTestUser();
 
       await Task.create([
-        { title: 'React project', description: 'Build app', owner: user._id, status: 'TODO', priority: 'LOW' },
-        { title: 'Other task', description: 'Something else', owner: user._id, status: 'TODO', priority: 'LOW' },
+        {
+          title: 'React project',
+          description: 'Build app',
+          owner: user._id,
+          status: 'TODO',
+          priority: 'LOW',
+        },
+        {
+          title: 'Other task',
+          description: 'Something else',
+          owner: user._id,
+          status: 'TODO',
+          priority: 'LOW',
+        },
       ]);
 
       const res = await authRequest(token).get('/api/tasks?search=react');
@@ -181,9 +189,7 @@ describe('Tasks', () => {
         completedAt: new Date(),
       });
 
-      const res = await authRequest(token)
-        .patch(`/api/tasks/${task._id}`)
-        .send({ status: 'TODO' });
+      const res = await authRequest(token).patch(`/api/tasks/${task._id}`).send({ status: 'TODO' });
 
       expect(res.status).toBe(200);
       expect(res.body.data.completedAt).toBeNull();
@@ -213,7 +219,7 @@ describe('Tasks', () => {
 
 describe('Authorization', () => {
   it('User A cannot access User B task', async () => {
-    const { user: userA, token: tokenA } = await createTestUser({ email: 'usera@test.com' });
+    const { token: tokenA } = await createTestUser({ email: 'usera@test.com' });
     const { user: userB } = await createTestUser({ email: 'userb@test.com' });
 
     const task = await Task.create({
@@ -238,9 +244,7 @@ describe('Authorization', () => {
       priority: 'LOW',
     });
 
-    const res = await authRequest(tokenA)
-      .patch(`/api/tasks/${task._id}`)
-      .send({ title: 'Hacked' });
+    const res = await authRequest(tokenA).patch(`/api/tasks/${task._id}`).send({ title: 'Hacked' });
 
     expect(res.status).toBe(404);
   });
@@ -264,12 +268,10 @@ describe('Authorization', () => {
     const { user, token } = await createTestUser();
     const { user: otherUser } = await createTestUser({ email: 'other@test.com' });
 
-    const res = await authRequest(token)
-      .post('/api/tasks')
-      .send({
-        title: 'Task with fake owner',
-        owner: otherUser._id.toString(),
-      });
+    const res = await authRequest(token).post('/api/tasks').send({
+      title: 'Task with fake owner',
+      owner: otherUser._id.toString(),
+    });
 
     expect(res.status).toBe(201);
     expect(res.body.data.owner.toString()).toBe(user._id.toString());

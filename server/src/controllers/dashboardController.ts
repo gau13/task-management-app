@@ -11,14 +11,13 @@ export const getStats = asyncHandler(async (req: Request, res: Response) => {
 export const getDashboardData = asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!._id;
 
-  const [stats, recentTasks, upcomingTasks, overdueTasks, statusDistribution] =
-    await Promise.all([
-      dashboardService.getStats(userId),
-      dashboardService.getRecentTasks(userId),
-      dashboardService.getUpcomingTasks(userId),
-      dashboardService.getOverdueTasks(userId),
-      dashboardService.getStatusDistribution(userId),
-    ]);
+  const [stats, recentTasks, upcomingTasks, overdueTasks, statusDistribution] = await Promise.all([
+    dashboardService.getStats(userId),
+    dashboardService.getRecentTasks(userId),
+    dashboardService.getUpcomingTasks(userId),
+    dashboardService.getOverdueTasks(userId),
+    dashboardService.getStatusDistribution(userId),
+  ]);
 
   sendSuccess(res, {
     stats,

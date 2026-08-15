@@ -21,6 +21,7 @@ A full-stack MERN task management application similar to a simplified Jira/Trell
 ## Technology Stack
 
 ### Frontend
+
 - React 18 + TypeScript
 - Vite
 - React Router
@@ -32,6 +33,7 @@ A full-stack MERN task management application similar to a simplified Jira/Trell
 - Vitest + React Testing Library
 
 ### Backend
+
 - Node.js + Express
 - TypeScript
 - MongoDB + Mongoose
@@ -159,10 +161,10 @@ npm run seed
 
 **Development only — do not use in production:**
 
-| Role  | Email              | Password     |
-|-------|--------------------|--------------|
-| User  | demo@example.com   | Demo@12345   |
-| Admin | admin@example.com  | Admin@12345  |
+| Role  | Email             | Password    |
+| ----- | ----------------- | ----------- |
+| User  | demo@example.com  | Demo@12345  |
+| Admin | admin@example.com | Admin@12345 |
 
 ## Running Tests
 
@@ -193,23 +195,23 @@ See [docs/API.md](docs/API.md) for complete endpoint documentation.
 
 ### Endpoint Summary
 
-| Method | Endpoint | Auth |
-|--------|----------|------|
-| GET | /api/health | No |
-| POST | /api/auth/register | No |
-| POST | /api/auth/login | No |
-| GET | /api/auth/me | Yes |
-| POST | /api/auth/logout | Yes |
-| POST | /api/tasks | Yes |
-| GET | /api/tasks | Yes |
-| GET | /api/tasks/:id | Yes |
-| PATCH | /api/tasks/:id | Yes |
-| DELETE | /api/tasks/:id | Yes |
-| POST | /api/tasks/:taskId/comments | Yes |
-| GET | /api/tasks/:taskId/comments | Yes |
-| DELETE | /api/tasks/:taskId/comments/:commentId | Yes |
-| GET | /api/dashboard/stats | Yes |
-| GET | /api/dashboard | Yes |
+| Method | Endpoint                               | Auth |
+| ------ | -------------------------------------- | ---- |
+| GET    | /api/health                            | No   |
+| POST   | /api/auth/register                     | No   |
+| POST   | /api/auth/login                        | No   |
+| GET    | /api/auth/me                           | Yes  |
+| POST   | /api/auth/logout                       | Yes  |
+| POST   | /api/tasks                             | Yes  |
+| GET    | /api/tasks                             | Yes  |
+| GET    | /api/tasks/:id                         | Yes  |
+| PATCH  | /api/tasks/:id                         | Yes  |
+| DELETE | /api/tasks/:id                         | Yes  |
+| POST   | /api/tasks/:taskId/comments            | Yes  |
+| GET    | /api/tasks/:taskId/comments            | Yes  |
+| DELETE | /api/tasks/:taskId/comments/:commentId | Yes  |
+| GET    | /api/dashboard/stats                   | Yes  |
+| GET    | /api/dashboard                         | Yes  |
 
 ## License
 

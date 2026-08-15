@@ -50,7 +50,7 @@ const taskSchema = new Schema<ITask>(
       default: null,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 taskSchema.index({ owner: 1, status: 1 });

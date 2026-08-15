@@ -201,7 +201,9 @@ export function TasksPage() {
       {/* Task list */}
       <div className="bg-white rounded-xl border">
         {isLoading ? (
-          <div className="p-4"><LoadingSkeleton rows={5} /></div>
+          <div className="p-4">
+            <LoadingSkeleton rows={5} />
+          </div>
         ) : isError ? (
           <EmptyState
             title="Failed to load tasks"
